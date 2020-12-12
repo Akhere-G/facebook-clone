@@ -14,7 +14,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useStateValue } from "../StateProvider";
 
 export default function Header() {
-  const [{ user }] = useStateValue();
+  const {
+    state: { user },
+  } = useStateValue();
   return (
     <div className={styles.header}>
       <div className={styles.headerLeft}>

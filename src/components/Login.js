@@ -1,25 +1,17 @@
 import React from "react";
 import styles from "../styles/Login.module.css";
-import { Button } from "@material-ui/core";
 import { auth, provider } from "../firebase";
-import { actionTypes } from "../reducer";
 import { useStateValue } from "../StateProvider";
 
 export default function Login() {
-  const [dispatch] = useStateValue();
+  const { setUser } = useStateValue();
 
   const signIn = e => {
     //sign in
     auth
       .signInWithPopup(provider)
-      .then(result => {
-        dispatch({
-          type: actionTypes.SET_USER,
-          user: result.user,
-        });
-        console.log(result);
-      })
-      .catch(error => alert(error.message));
+      .then(result => setUser(result.user))
+      .catch(error => console.log(error.message));
     e.preventDefault();
   };
   return (
@@ -37,9 +29,9 @@ export default function Login() {
             alt='facebook text'
           />
         </div>
-        <Button className={styles.loginButton} type='submit' onClick={signIn}>
+        <button className={styles.loginButton} type='submit' onClick={signIn}>
           Sign In
-        </Button>
+        </button>
       </div>
     </div>
   );

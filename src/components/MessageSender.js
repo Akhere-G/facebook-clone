@@ -9,7 +9,9 @@ import db from "../firebase";
 import firebase from "firebase";
 
 export default function MessageSender() {
-  const [{ user }] = useStateValue();
+  const {
+    state: { user },
+  } = useStateValue();
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
