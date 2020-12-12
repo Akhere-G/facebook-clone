@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import "./MessageSender.css";
+import "../styles/MessageSender.css";
 import { Avatar } from "@material-ui/core";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
-import { useStateValue } from "./StateProvider";
-import db from "./firebase";
+import { useStateValue } from "../StateProvider";
+import db from "../firebase";
 import firebase from "firebase";
 
 export default function MessageSender() {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user }] = useStateValue();
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     db.collection("posts").add({
@@ -28,37 +28,37 @@ export default function MessageSender() {
   };
 
   return (
-    <div className="messageSender">
-      <div className="messageSender_top">
+    <div className='messageSender'>
+      <div className='messageSender_top'>
         <Avatar src={user.photoURL} />
-        <form action="">
+        <form action=''>
           <input
             value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="messageSender_input"
+            onChange={e => setInput(e.target.value)}
+            className='messageSender_input'
             placeholder={`What's on your mind ${user.displayName}?`}
           />
           <input
             value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            className="image_url"
-            placeholder="image Url (optional)"
+            onChange={e => setImageUrl(e.target.value)}
+            className='image_url'
+            placeholder='image Url (optional)'
           />
-          <button onClick={handleSubmit} type="submit">
+          <button onClick={handleSubmit} type='submit'>
             hidden
           </button>
         </form>
       </div>
-      <div className="messageSender_bottom">
-        <div className="messageSender_option">
+      <div className='messageSender_bottom'>
+        <div className='messageSender_option'>
           <VideocamIcon style={{ color: "red" }} />
           <h3>Live video</h3>
         </div>
-        <div className="messageSender_option">
+        <div className='messageSender_option'>
           <PhotoLibraryIcon style={{ color: "green" }} />
           <h3>Photo/Video</h3>
         </div>
-        <div className="messageSender_option">
+        <div className='messageSender_option'>
           <InsertEmoticonIcon style={{ color: "orange" }} />
           <h3>Feeling/Activity</h3>
         </div>

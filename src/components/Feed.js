@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
-import "./Feed.css";
+import "../styles/Feed.css";
 import StoryReel from "./StoryReel";
 import MessageSender from "./MessageSender";
 import Post from "./Post";
-import db from "./firebase";
+import db from "../firebase";
 export default function Feed() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     db.collection("posts")
       .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) =>
-        setPosts(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
+      .onSnapshot(snapshot =>
+        setPosts(snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })))
       );
   });
   return (
-    <div className="Feed">
+    <div className='Feed'>
       <StoryReel />
       <MessageSender />
-      {posts.map((post) => {
+      {posts.map(post => {
         return (
           <Post
             key={post.id}
@@ -35,7 +35,7 @@ export default function Feed() {
 }
 
 /*
-   image="https://images.pexels.com/photos/1839836/pexels-photo-1839836.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+    image="https://images.pexels.com/photos/1839836/pexels-photo-1839836.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
         profileSrc="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
         title="Steve Rogers"
       />

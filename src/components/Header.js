@@ -1,5 +1,5 @@
 import React from "react";
-import "./Header.css";
+import styles from "../styles/Header.module.css";
 import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
 import FlagIcon from "@material-ui/icons/Flag";
@@ -11,45 +11,47 @@ import AddIcon from "@material-ui/icons/Add";
 import ForumIcon from "@material-ui/icons/Forum";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../StateProvider";
 
 export default function Header() {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user }] = useStateValue();
   return (
-    <div className="header">
-      <div className="header_left">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-          alt="facebook logo"
-        />
-        <div className="header_input">
+    <div className={styles.header}>
+      <div className={styles.headerLeft}>
+        <div className={styles.imgContainer}>
+          <img
+            src='https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg'
+            alt='facebook logo'
+          />
+        </div>
+        <div className={styles.headerInput}>
           <SearchIcon />
-          <input type="text" placeholder="Search Facebook" />
+          <input type='text' placeholder='Search Facebook' />
         </div>
       </div>
-      <div className="header_center">
-        <div className="header_option--active">
-          <HomeIcon fontSize="Large" />
+      <div className={styles.headerCenter}>
+        <div className={styles.headerOptionActive}>
+          <HomeIcon />
         </div>
-        <div className="header_option">
-          <FlagIcon fontSize="Large" />
+        <div className={styles.headerOption}>
+          <FlagIcon />
         </div>
-        <div className="header_option">
-          <SubscriptionsOutlinedIcon fontSize="Large" />
+        <div className={styles.headerOption}>
+          <SubscriptionsOutlinedIcon />
         </div>
-        <div className="header_option">
-          <StorefrontOutlinedIcon fontSize="Large" />
+        <div className={styles.headerOption}>
+          <StorefrontOutlinedIcon />
         </div>
-        <div className="header_option">
-          <SupervisedUserCircleIcon fontSize="Large" />
+        <div className={styles.headerOption}>
+          <SupervisedUserCircleIcon />
         </div>
       </div>
-      <div className="header_right">
-        <div className="header_info">
+      <div className={styles.headerRight}>
+        <div className={styles.headerInfo}>
           <Avatar src={user.photoURL} />
           <h4>{user.displayName}</h4>
         </div>
-
+        <div className={styles.headerRightIcons}></div>
         <IconButton>
           <AddIcon />
         </IconButton>

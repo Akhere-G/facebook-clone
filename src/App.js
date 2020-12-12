@@ -1,21 +1,21 @@
-import "./App.css";
-import Login from "./Login.js";
-import Header from "./Header.js";
-import Sidebar from "./Sidebar.js";
-import Feed from "./Feed.js";
-import Widget from "./Widget.js";
+import styles from "./styles/App.module.css";
+import Login from "./components/Login.js";
+import Header from "./components/Header.js";
+import Sidebar from "./components/Sidebar.js";
+import Feed from "./components/Feed.js";
+import Widget from "./components/Widget.js";
 import { useStateValue } from "./StateProvider";
 
 function App() {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user }] = useStateValue();
   return (
-    <div className="app">
+    <div className={styles.app}>
       {!user ? (
         <Login />
       ) : (
         <div>
           <Header />
-          <div className="app_body">
+          <div className={styles.appBody}>
             <Sidebar />
             <Feed />
             <Widget />
